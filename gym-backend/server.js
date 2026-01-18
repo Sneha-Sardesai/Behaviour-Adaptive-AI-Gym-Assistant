@@ -19,6 +19,19 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
+// tester route
+app.get('/', (req, res) => {
+    res.send("Server is working");
+});
+
+// ----------------------------------------------------------------------------------------------
+
+// routes (API's)
+
+const homeRouter = require('./routes/home');
+
+app.use('/api/home', homeRouter);
+
 // ----------------------------------------------------------------------------------------------
 
 // server
@@ -29,13 +42,6 @@ app.listen(process.env.PORT || 3001, () => {
 
 // ----------------------------------------------------------------------------------------------
 
-// routes 
-
-const indexRouter = require('./routes/index');
-
-app.use('/', indexRouter);
-
-// ----------------------------------------------------------------------------------------------
 
 // mongodb
 
