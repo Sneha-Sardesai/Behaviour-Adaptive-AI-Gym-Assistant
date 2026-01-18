@@ -1,0 +1,55 @@
+// environment-based .env loading
+
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+// --------------------------------------------------------------------------------------------
+
+// importing dependencies
+
+const express = require('express');
+const app = express();
+const cors = require('cors');
+
+// ----------------------------------------------------------------------------------------------
+
+// configuring the app
+
+app.use(express.json());
+app.use(cors());
+
+// tester route
+app.get('/', (req, res) => {
+    res.send("Server is working");
+});
+
+// ----------------------------------------------------------------------------------------------
+
+// routes (API's)
+
+const homeRouter = require('./routes/home');
+
+app.use('/api/home', homeRouter);
+
+// ----------------------------------------------------------------------------------------------
+
+// server
+
+app.listen(process.env.PORT || 3001, () => {
+    console.log("Server started at http://localhost:3001");
+});
+
+// ----------------------------------------------------------------------------------------------
+
+
+// mongodb
+
+// const mongoose = require('mongoose');
+// mongoose.connect(process.env.DATABASE_URL);
+
+// const db = mongoose.connection;
+// db.once('open', () => console.log("Connected to mongoose"));
+// db.on('error', error => console.error(error));
+
+// ------------------------------------------------------------------------------------------------
