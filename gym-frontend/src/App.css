@@ -153,4 +153,73 @@ body {
 }
 
 
+.features {
+  background: #0d0d0d;
+  padding: 80px 60px;
+  color: white;
+  text-align: center;
+}
+
+.feature-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 50px;
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.card {
+  background: #161616;
+  padding: 35px 30px;
+  width: 300px;
+  border-radius: 20px;
+
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 0px 30px rgba(0,191,255,0.4);
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #00bfff;
+}
+
+.card p {
+  font-size: 16px;
+  color: #cccccc;
+}
+
+.footer {
+  background: #0d0d0d;
+  color: #cccccc;
+  padding: 25px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.footer p {
+  margin-top:60px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.footer p:hover {
+  color: #00bfff;
+}
+
 
