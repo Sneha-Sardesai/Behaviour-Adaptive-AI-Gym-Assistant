@@ -14,7 +14,7 @@ const cors = require('cors');
 
 // ----------------------------------------------------------------------------------------------
 
-// configuring the app
+// configuring the app and middleware
 
 app.use(express.json());
 app.use(cors());
@@ -26,9 +26,36 @@ app.get('/', (req, res) => {
 
 // ----------------------------------------------------------------------------------------------
 
+// mongoDB
+
+const mongoose = require('mongoose');
+
+mongoose  
+    .connect(process.env.DATABASE_URL)
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((err) => {
+        console.error("Error connecting to MongoDB : ", err);
+    })
+
+const Member = require('./models/Member');
+
+app.get('/members', async (req, res) => {
+    try {
+        const members = await Member.find();
+        res.json(members);
+    } catch (error) {
+        res.status(500).json({error : error.message});
+    }
+})
+
+
+// ----------------------------------------------------------------------------------------------
+
 // routes (API's)
 
-const homeRouter = require('./routes/home');
+const homeRouter = require('./routes/index');
 
 app.use('/api/home', homeRouter);
 
@@ -41,15 +68,3 @@ app.listen(process.env.PORT || 3001, () => {
 });
 
 // ----------------------------------------------------------------------------------------------
-
-
-// mongodb
-
-// const mongoose = require('mongoose');
-// mongoose.connect(process.env.DATABASE_URL);
-
-// const db = mongoose.connection;
-// db.once('open', () => console.log("Connected to mongoose"));
-// db.on('error', error => console.error(error));
-
-// ------------------------------------------------------------------------------------------------
